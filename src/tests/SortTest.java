@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -19,8 +18,7 @@ import org.testng.asserts.SoftAssert;
 import objects.RepeatHome;
 import objects.RepeatInventory;
 
-public class RepeatTests {
-
+public class SortTest {
 	private static WebDriver driver;
 
 	@BeforeClass
@@ -31,8 +29,7 @@ public class RepeatTests {
 	}
 
 	@Test
-	public void testLogin() {
-		// driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	public void testSort() {
 		File f = new File("data.xlsx");
 		try {
 			InputStream inp = new FileInputStream(f);
@@ -78,6 +75,15 @@ public class RepeatTests {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
+				RepeatInventory.sort(driver);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				RepeatInventory.clickMenu(driver);
 				RepeatInventory.clickLogout(driver);
 
